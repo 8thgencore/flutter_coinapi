@@ -1,0 +1,43 @@
+{
+    "@@locale": "en",
+    "counterAppBarTitle": "Counter",
+    "@counterAppBarTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    },
+  "message": "Welcome",
+  "@message": {
+    "description": "Welcome"
+  },
+  "name": "Axel Maker",
+  "@name": {
+    "description": "Axel Maker"
+  },
+  "balance": "Balance",
+  "@balance": {
+    "description": "Balance"
+  },
+  "monthlyProfit": "Monthly Profit",
+  "@monthlyProfit": {
+    "description": "Monthly Profit"
+  },
+  "dummyBalance": "$450,933",
+  "@dummyBalance": {
+    "description": "$450,933"
+  },
+  "dummyMonthlyProfit": "$12,484",
+  "@dummyMonthlyProfit": {
+    "description": "$12,484"
+  },
+  "dummyPercent": "10 %",
+  "@dummyPercent": {
+    "description": "10 %"
+  },
+  "cryptoAssets": "Crypto assets",
+  "@cryptoAssets": {
+    "description": "Crypto assets"
+  },
+  "livePrices": "Live Prices",
+  "@livePrices": {
+    "description": "Live Prices"
+  }
+}
