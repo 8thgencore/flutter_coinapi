@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_coinapi/core/cubit/crypto_assets_cubit.dart';
+import 'package:flutter_coinapi/resources/typography.dart';
 import 'package:flutter_coinapi/ui/pages/widgets/cached_circle_avatar.dart';
 
 class CryptoAssets extends StatelessWidget {
@@ -11,8 +12,8 @@ class CryptoAssets extends StatelessWidget {
     BlocProvider.of<CryptoAssetsCubit>(context).getCryptoAssets();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Text('Crypto assets', style: TextStyle(fontSize: 17)),
+      children: [
+       Text('Crypto assets', style:  AppTypography.r16),
         Container(
           height: 400,
           padding: const EdgeInsets.only(top: 20),
@@ -27,9 +28,7 @@ class CryptoAssets extends StatelessWidget {
                 itemCount: cryptoAssets.length,
                 itemBuilder: (context, index) => Card(
                   child: ListTile(
-                    leading: CachedCircleAvatar(
-                      url: cryptoAssets[index].url,
-                    ),
+                    leading: CachedCircleAvatar(url: cryptoAssets[index].url),
                     title: Center(
                       child: Text(
                         cryptoAssets[index].assetId,

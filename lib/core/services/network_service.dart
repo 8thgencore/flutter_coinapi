@@ -20,7 +20,7 @@ class NetworkService implements INetworkService {
         ),
       );
       return result.data!;
-    } catch (e) {
+    } on Exception catch (e) {
       return <List<dynamic>>[];
     }
   }

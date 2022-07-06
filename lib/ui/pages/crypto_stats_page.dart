@@ -3,6 +3,7 @@ import 'package:flutter_coinapi/l10n/l10n.dart';
 import 'package:flutter_coinapi/resources/assets.gen.dart';
 import 'package:flutter_coinapi/ui/pages/widgets/balance_card.dart';
 import 'package:flutter_coinapi/ui/pages/widgets/crypto_assets.dart';
+import 'package:flutter_coinapi/ui/pages/widgets/live_prices.dart';
 import 'package:flutter_coinapi/ui/pages/widgets/profile.dart';
 
 class CryptoStatsPage extends StatelessWidget {
@@ -31,8 +32,9 @@ class CryptoStatsPage extends StatelessWidget {
                   profitPer: l10n.dummyPercent,
                 ),
                 const SizedBox(height: 20),
-                const CryptoAssets(),
+                const LivePrices(),
                 const SizedBox(height: 20),
+                const CryptoAssets(),
                 const SizedBox(height: 20),
               ],
             ),

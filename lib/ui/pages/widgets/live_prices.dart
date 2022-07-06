@@ -1,89 +1,127 @@
-// import 'package:flutter/material.dart';
-//
-// class LivePrices extends StatefulWidget {
-//   // ignore: public_member_api_docs
-//   const LivePrices({Key? key}) : super(key: key);
-//
-//   @override
-//   _LivePricesState createState() => _LivePricesState();
-// }
-//
-// class _LivePricesState extends State<LivePrices> {
-//   @override
-//   Widget build(BuildContext context) {
-//     // final realDataStream =
-//     //     BlocProvider.of<LivePricesCubit>(context).getRealData();
-//     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
-//         Widget>[
-//       const Text('Live Prices', style: TextStyle(fontSize: 17)),
-//       Container(
-//           height: 230,
-//           padding: const EdgeInsets.only(top: 10),
-//           child: StreamBuilder<dynamic>(
-//               stream: realDataStream,
-//               builder: (context, snapshot) {
-//                 if (snapshot.hasData) {
-//                   final realData = Trade.fromJson(
-//                       jsonDecode(snapshot.data.toString())
-//                           as Map<String, dynamic>);
-//                   return ListView.builder(
-//                       physics: const BouncingScrollPhysics(),
-//                       scrollDirection: Axis.horizontal,
-//                       itemCount: tradeList.length,
-//                       itemBuilder: (BuildContext context, int index) {
-//                         tradeList
-//                             .firstWhere((element) =>
-//                                 element.symbolId == realData.symbolId)
-//                             .price = realData.price;
-//                         tradeList
-//                             .firstWhere((element) =>
-//                                 element.symbolId == realData.symbolId)
-//                             .takerSide = realData.takerSide;
-//
-//                         return Padding(
-//                             padding: const EdgeInsets.only(right: 10),
-//                             child: Card(
-//                               shape: RoundedRectangleBorder(
-//                                   borderRadius: BorderRadius.circular(10)),
-//                               child: Container(
-//                                   width: 250,
-//                                   height: 230,
-//                                   padding:
-//                                       const EdgeInsets.fromLTRB(20, 10, 20, 10),
-//                                   child: Column(
-//                                       mainAxisSize: MainAxisSize.min,
-//                                       mainAxisAlignment:
-//                                           MainAxisAlignment.spaceBetween,
-//                                       crossAxisAlignment:
-//                                           CrossAxisAlignment.start,
-//                                       children: <Widget>[
-//                                         Row(children: <Widget>[
-//                                           CircleAvatar(
-//                                               backgroundImage:
-//                                                   tradeList[index].icon),
-//                                           const SizedBox(width: 20),
-//                                           Text(tradeList[index].title1,
-//                                               style: const TextStyle(
-//                                                   fontSize: 20,
-//                                                   fontWeight: FontWeight.bold)),
-//                                           Text(tradeList[index].title2,
-//                                               style: const TextStyle(
-//                                                   fontSize: 20)),
-//                                         ]),
-//                                         Text(tradeList[index].price.toString(),
-//                                             style: const TextStyle(
-//                                                 fontSize: 24,
-//                                                 fontWeight: FontWeight.bold)),
-//                                         Text(tradeList[index].takerSide,
-//                                             style:
-//                                                 const TextStyle(fontSize: 16))
-//                                       ])),
-//                             ));
-//                       });
-//                 } else {
-//                   return const Center(child: CircularProgressIndicator());
-//                 }
-//               }))
-//     ]);
-//   }
-// }
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_coinapi/core/cubit/live_prices_cubit.dart';
+import 'package:flutter_coinapi/core/models/live_trade.dart';
+import 'package:flutter_coinapi/resources/typography.dart';
+
+class LivePrices extends StatefulWidget {
+  const LivePrices({super.key});
+
+  @override
+  _LivePricesState createState() => _LivePricesState();
+}
+
+class _LivePricesState extends State<LivePrices> {
+  @override
+  Widget build(BuildContext context) {
+    final realDataStream =
+        BlocProvider.of<LivePricesCubit>(context).getRealData();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Live Prices', style: AppTypography.r16),
+        Container(
+          height: 230,
+          padding: const EdgeInsets.only(top: 10),
+          child: StreamBuilder<dynamic>(
+            stream: realDataStream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final rawTradeData = jsonDecode(snapshot.data.toString())
+                    as Map<String, dynamic>;
+                if (rawTradeData['type'] != 'error') {
+                  final tradeData = LiveTrade.fromJson(rawTradeData);
+                  return ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: tradeList.length,
+                    itemBuilder: (context, index) {
+                      final indexCoin = tradeList.indexWhere(
+                        (element) => element.symbolId == tradeData.symbolId,
+                      );
+                      tradeList[indexCoin] = tradeList[indexCoin].copyWith(
+                        price: tradeData.price,
+                        takerSide: tradeData.takerSide,
+                      );
+                      return LivePriceCard(index: index, tradeData: tradeData);
+                    },
+                  );
+                } else {
+                  return Container(
+                    color: Colors.red,
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    child: const Text('[ERROR]'),
+                  );
+                }
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class LivePriceCard extends StatelessWidget {
+  const LivePriceCard({
+    required this.index,
+    required this.tradeData,
+    super.key,
+  });
+
+  final int index;
+  final LiveTrade tradeData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Container(
+          width: 200,
+          height: 230,
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage(tradeList[index].iconPath!),
+                  ),
+                  const SizedBox(width: 20),
+                  Text(
+                    tradeList[index].symbolId.split('_')[2],
+                    style: AppTypography.b20,
+                  ),
+                  Text(
+                    "/${tradeList[index].symbolId.split('_')[3]}",
+                    style: AppTypography.r20,
+                  ),
+                ],
+              ),
+              Text(
+                tradeList[index].price.toString(),
+                style: AppTypography.b24,
+              ),
+              Text(
+                tradeList[index].takerSide,
+                style: const TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

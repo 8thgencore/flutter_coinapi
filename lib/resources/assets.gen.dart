@@ -12,8 +12,17 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/ada.png
+  AssetGenImage get ada => const AssetGenImage('assets/images/ada.png');
+
   /// File path: assets/images/avatar.jpeg
   AssetGenImage get avatar => const AssetGenImage('assets/images/avatar.jpeg');
+
+  /// File path: assets/images/btc.png
+  AssetGenImage get btc => const AssetGenImage('assets/images/btc.png');
+
+  /// File path: assets/images/eth.png
+  AssetGenImage get eth => const AssetGenImage('assets/images/eth.png');
 }
 
 class Assets {

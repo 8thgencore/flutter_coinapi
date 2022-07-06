@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_coinapi/resources/typography.dart';
 
 class ProfileWidget extends StatelessWidget {
   const ProfileWidget({
@@ -20,11 +21,8 @@ class ProfileWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(message, style: const TextStyle(fontSize: 17)),
-            Text(
-              name,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+            Text(message, style: AppTypography.r16),
+            Text(name, style: AppTypography.b18),
           ],
         ),
         CircleAvatar(backgroundImage: AssetImage(imagePath)),

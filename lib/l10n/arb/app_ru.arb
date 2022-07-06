@@ -1,0 +1,43 @@
+{
+    "@@locale": "ru",
+    "counterAppBarTitle": "Counter",
+    "@counterAppBarTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "message": "Добро пожаловть!",
+    "@message": {
+        "description": "Welcome"
+    },
+    "name": "Axel Maker",
+    "@name": {
+        "description": "Axel Maker"
+    },
+    "balance": "Баланс",
+    "@balance": {
+        "description": "Balance"
+    },
+    "monthlyProfit": "Прибль за месяц",
+    "@monthlyProfit": {
+        "description": "Monthly Profit"
+    },
+    "dummyBalance": "$450,933",
+    "@dummyBalance": {
+        "description": "$450,933"
+    },
+    "dummyMonthlyProfit": "$12,484",
+    "@dummyMonthlyProfit": {
+        "description": "$12,484"
+    },
+    "dummyPercent": "10 %",
+    "@dummyPercent": {
+        "description": "10 %"
+    },
+    "cryptoAssets": "Криптоактивы",
+    "@cryptoAssets": {
+        "description": "Crypto assets"
+    },
+    "livePrices": "Реальные цены",
+    "@livePrices": {
+        "description": "Live Prices"
+    }
+}

@@ -5,8 +5,8 @@ part 'crypto_asset.freezed.dart';
 part 'crypto_asset.g.dart';
 
 @freezed
-@JsonSerializable(fieldRename: FieldRename.snake)
 class CryptoAsset with _$CryptoAsset {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory CryptoAsset({
     required String assetId,
     required String url,

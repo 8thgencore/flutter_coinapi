@@ -6,7 +6,6 @@ import 'package:meta/meta.dart';
 part 'crypto_assets_state.dart';
 
 class CryptoAssetsCubit extends Cubit<CryptoAssetsState> {
-
   CryptoAssetsCubit(this._repository) : super(CryptoInitial());
   final IRepository _repository;
 

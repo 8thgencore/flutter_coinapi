@@ -13,7 +13,6 @@ class Repository implements IRepository {
   @override
   Future<List<CryptoAsset>> getCryptoAssets() async {
     final result = await _networkService.getCryptoAssets();
-    print(result.map((dynamic e) => print(e as Map<String, dynamic>)));
 
     return result
         .map((dynamic e) => CryptoAsset.fromJson(e as Map<String, dynamic>))

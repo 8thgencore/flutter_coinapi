@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_coinapi/l10n/l10n.dart';
+import 'package:flutter_coinapi/resources/typography.dart';
 
 class BalanceCard extends StatelessWidget {
   const BalanceCard({
@@ -27,11 +28,15 @@ class BalanceCard extends StatelessWidget {
         children: [
           Text(
             l10n.balance,
-            style: const TextStyle(color: Colors.white, fontSize: 17),
+            style: AppTypography.r16.copyWith(color: Colors.white),
           ),
-          Text(
-            r'$ 10000',
-            style: TextStyle(color: Colors.white, fontSize: 17),
+          const Text(
+            r'$ 312.12',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 20),
           Row(
@@ -42,28 +47,24 @@ class BalanceCard extends StatelessWidget {
                 children: [
                   Text(
                     l10n.monthlyProfit,
-                    style: TextStyle(color: Colors.white, fontSize: 17),
+                    style: AppTypography.r16.copyWith(color: Colors.white),
                   ),
                   Text(
-                    "213132",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    r'$ 6423.2',
+                    style: AppTypography.b18.copyWith(color: Colors.white),
                   ),
                 ],
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(8, 5, 8, 5),
+                padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(.15),
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.arrow_drop_up,
                       size: 20,
@@ -71,7 +72,7 @@ class BalanceCard extends StatelessWidget {
                     ),
                     Text(
                       'prof',
-                      style: TextStyle(color: Colors.white, fontSize: 13),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ],
                 ),

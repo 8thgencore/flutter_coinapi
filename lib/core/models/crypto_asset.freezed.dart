@@ -102,7 +102,8 @@ class __$$_CryptoAssetCopyWithImpl<$Res> extends _$CryptoAssetCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_CryptoAsset implements _CryptoAsset {
   const _$_CryptoAsset({required this.assetId, required this.url});
 
