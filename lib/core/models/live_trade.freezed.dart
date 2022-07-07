@@ -192,13 +192,13 @@ abstract class _LiveTrade implements LiveTrade {
       _$_LiveTrade.fromJson;
 
   @override
-  String get symbolId => throw _privateConstructorUsedError;
+  String get symbolId;
   @override
-  double get price => throw _privateConstructorUsedError;
+  double get price;
   @override
-  String get takerSide => throw _privateConstructorUsedError;
+  String get takerSide;
   @override
-  String? get iconPath => throw _privateConstructorUsedError;
+  String? get iconPath;
   @override
   @JsonKey(ignore: true)
   _$$_LiveTradeCopyWith<_$_LiveTrade> get copyWith =>

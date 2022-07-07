@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_coinapi/core/cubit/live_prices_cubit.dart';
 import 'package:flutter_coinapi/core/models/live_trade.dart';
+import 'package:flutter_coinapi/l10n/l10n.dart';
 import 'package:flutter_coinapi/resources/typography.dart';
 
 class LivePrices extends StatefulWidget {
@@ -16,12 +17,13 @@ class LivePrices extends StatefulWidget {
 class _LivePricesState extends State<LivePrices> {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final realDataStream =
         BlocProvider.of<LivePricesCubit>(context).getRealData();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Live Prices', style: AppTypography.r16),
+        Text(l10n.livePrices, style: AppTypography.r16),
         Container(
           height: 230,
           padding: const EdgeInsets.only(top: 10),
@@ -38,13 +40,6 @@ class _LivePricesState extends State<LivePrices> {
                     scrollDirection: Axis.horizontal,
                     itemCount: tradeList.length,
                     itemBuilder: (context, index) {
-                      final indexCoin = tradeList.indexWhere(
-                        (element) => element.symbolId == tradeData.symbolId,
-                      );
-                      tradeList[indexCoin] = tradeList[indexCoin].copyWith(
-                        price: tradeData.price,
-                        takerSide: tradeData.takerSide,
-                      );
                       return LivePriceCard(index: index, tradeData: tradeData);
                     },
                   );
@@ -79,6 +74,13 @@ class LivePriceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final indexCoin = tradeList.indexWhere(
+      (element) => element.symbolId == tradeData.symbolId,
+    );
+    tradeList[indexCoin] = tradeList[indexCoin].copyWith(
+      price: tradeData.price,
+      takerSide: tradeData.takerSide,
+    );
     return Padding(
       padding: const EdgeInsets.only(right: 10),
       child: Card(

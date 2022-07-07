@@ -1,9 +1,9 @@
 {
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    },
+  "@@locale": "en",
+  "counterAppBarTitle": "Counter",
+  "@counterAppBarTitle": {
+    "description": "Text shown in the AppBar of the Counter Page"
+  },
   "message": "Welcome",
   "@message": {
     "description": "Welcome"
@@ -35,6 +35,10 @@
   "cryptoAssets": "Crypto assets",
   "@cryptoAssets": {
     "description": "Crypto assets"
+  },
+  "cryptoAssetsNotFound": "Crypto assets not found",
+  "@cryptoAssetsNotFound": {
+    "description": "Not found crypto assets"
   },
   "livePrices": "Live Prices",
   "@livePrices": {

@@ -36,6 +36,10 @@
     "@cryptoAssets": {
         "description": "Crypto assets"
     },
+    "cryptoAssetsNotFound": "Данные о криптоактивах не доступны",
+    "@cryptoAssetsNotFound": {
+        "description": "Not found crypto assets"
+    },
     "livePrices": "Реальные цены",
     "@livePrices": {
         "description": "Live Prices"

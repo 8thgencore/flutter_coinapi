@@ -156,9 +156,9 @@ abstract class _CryptoAsset implements CryptoAsset {
       _$_CryptoAsset.fromJson;
 
   @override
-  String get assetId => throw _privateConstructorUsedError;
+  String get assetId;
   @override
-  String get url => throw _privateConstructorUsedError;
+  String get url;
   @override
   @JsonKey(ignore: true)
   _$$_CryptoAssetCopyWith<_$_CryptoAsset> get copyWith =>
